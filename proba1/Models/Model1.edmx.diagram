@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce8cbe05a1ca4b2892f6cd35729858b7" Name="Diagram1">
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.dogovor" Width="1.5" PointX="7.875" PointY="7.25" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.dogovorIznajmuvanje" Width="1.5" PointX="11.625" PointY="6.25" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.dogovorProdavanje" Width="1.5" PointX="11.625" PointY="8.375" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.kancelarija" Width="1.5" PointX="7.875" PointY="0.5" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.klient" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.kukja" Width="1.5" PointX="11.25" PointY="0.5" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.objekt" Width="1.5" PointX="7.875" PointY="3.25" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.sopstvenik" Width="1.5" PointX="4.75" PointY="0.5" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.stan" Width="1.5" PointX="9.5" PointY="0.5" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.Tip_Korisnik" Width="1.5" PointX="2.75" PointY="3.375" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.tip_na_dogovor" Width="1.5" PointX="11.625" PointY="4.625" />
+        <EntityTypeShape EntityType="AgencijaZaNEdvizniniModel.vraboten" Width="1.5" PointX="4.75" PointY="3.75" />
+        <AssociationConnector Association="AgencijaZaNEdvizniniModel.FK__dogovor__idKlien__45F365D3" />
+        <AssociationConnector Association="AgencijaZaNEdvizniniModel.FK__dogovor__idObjek__52593CB8" />
+        <AssociationConnector Association="AgencijaZaNEdvizniniModel.FK__dogovor__idVrabo__5FB337D6" />
+        <AssociationConnector Association="AgencijaZaNEdvizniniModel.FK__dogovorIz__idDog__3D5E1FD2" />
+        <AssociationConnector Association="AgencijaZaNEdvizniniModel.FK__dogovorPr__idDog__403A8C7D" />
+        <AssociationConnector Association="AgencijaZaNEdvizniniModel.FK__kancelari__idObj__534D60F1" />
+        <AssociationConnector Association="AgencijaZaNEdvizniniModel.FK__kukja__idObjekt__5441852A" />
+        <AssociationConnector Association="AgencijaZaNEdvizniniModel.FK__objekt__idSopstv__5812160E" />
+        <AssociationConnector Association="AgencijaZaNEdvizniniModel.FK__stan__idObjekt__5AEE82B9" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

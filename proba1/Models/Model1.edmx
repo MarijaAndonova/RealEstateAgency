@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="StoreContainer">
+          <EntitySet Name="dogovor" EntityType="Store.dogovor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="dogovorIznajmuvanje" EntityType="Store.dogovorIznajmuvanje" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="dogovorProdavanje" EntityType="Store.dogovorProdavanje" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="kancelarija" EntityType="Store.kancelarija" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="klient" EntityType="Store.klient" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="kukja" EntityType="Store.kukja" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="objekt" EntityType="Store.objekt" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sopstvenik" EntityType="Store.sopstvenik" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="stan" EntityType="Store.stan" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tip_Korisnik" EntityType="Store.Tip_Korisnik" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tip_na_dogovor" EntityType="Store.tip_na_dogovor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vraboten" EntityType="Store.vraboten" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__dogovor__idKlien__45F365D3" Association="Store.FK__dogovor__idKlien__45F365D3">
+            <End Role="klient" EntitySet="klient" />
+            <End Role="dogovor" EntitySet="dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dogovor__idObjek__52593CB8" Association="Store.FK__dogovor__idObjek__52593CB8">
+            <End Role="objekt" EntitySet="objekt" />
+            <End Role="dogovor" EntitySet="dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dogovor__idVrabo__5FB337D6" Association="Store.FK__dogovor__idVrabo__5FB337D6">
+            <End Role="vraboten" EntitySet="vraboten" />
+            <End Role="dogovor" EntitySet="dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dogovorIz__idDog__3D5E1FD2" Association="Store.FK__dogovorIz__idDog__3D5E1FD2">
+            <End Role="dogovor" EntitySet="dogovor" />
+            <End Role="dogovorIznajmuvanje" EntitySet="dogovorIznajmuvanje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dogovorPr__idDog__403A8C7D" Association="Store.FK__dogovorPr__idDog__403A8C7D">
+            <End Role="dogovor" EntitySet="dogovor" />
+            <End Role="dogovorProdavanje" EntitySet="dogovorProdavanje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kancelari__idObj__534D60F1" Association="Store.FK__kancelari__idObj__534D60F1">
+            <End Role="objekt" EntitySet="objekt" />
+            <End Role="kancelarija" EntitySet="kancelarija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kukja__idObjekt__5441852A" Association="Store.FK__kukja__idObjekt__5441852A">
+            <End Role="objekt" EntitySet="objekt" />
+            <End Role="kukja" EntitySet="kukja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__objekt__idSopstv__5812160E" Association="Store.FK__objekt__idSopstv__5812160E">
+            <End Role="sopstvenik" EntitySet="sopstvenik" />
+            <End Role="objekt" EntitySet="objekt" />
+          </AssociationSet>
+          <AssociationSet Name="FK__stan__idObjekt__5AEE82B9" Association="Store.FK__stan__idObjekt__5AEE82B9">
+            <End Role="objekt" EntitySet="objekt" />
+            <End Role="stan" EntitySet="stan" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="dogovor">
+          <Key>
+            <PropertyRef Name="idDogovor" />
+          </Key>
+          <Property Name="idDogovor" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idKlient" Type="int" Nullable="false" />
+          <Property Name="idVraboten" Type="int" Nullable="false" />
+          <Property Name="idObjekt" Type="int" Nullable="false" />
+          <Property Name="notar" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="dogovorIznajmuvanje">
+          <Key>
+            <PropertyRef Name="idDogovorIznajmuvanje" />
+          </Key>
+          <Property Name="idDogovorIznajmuvanje" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="dataOd" Type="date" Nullable="false" />
+          <Property Name="dataDo" Type="date" Nullable="false" />
+          <Property Name="idDogovor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dogovorProdavanje">
+          <Key>
+            <PropertyRef Name="idDogovorProdavanje" />
+          </Key>
+          <Property Name="idDogovorProdavanje" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="dataOd" Type="date" Nullable="false" />
+          <Property Name="idDogovor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kancelarija">
+          <Key>
+            <PropertyRef Name="idKancelarija" />
+          </Key>
+          <Property Name="idKancelarija" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="internet" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="idObjekt" Type="int" />
+        </EntityType>
+        <EntityType Name="klient">
+          <Key>
+            <PropertyRef Name="idKlient" />
+          </Key>
+          <Property Name="idKlient" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="prezime" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="telefon" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ulica" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="grad" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="link_slika" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kukja">
+          <Key>
+            <PropertyRef Name="idKukja" />
+          </Key>
+          <Property Name="idKukja" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="KVADRATURADVOR" Type="int" Nullable="false" />
+          <Property Name="idObjekt" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="objekt">
+          <Key>
+            <PropertyRef Name="idObjekt" />
+          </Key>
+          <Property Name="idObjekt" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ulica" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="grad" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="sobi" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="urlMapa" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="kvadratura" Type="int" Nullable="false" />
+          <Property Name="linkSliki" Type="nvarchar" MaxLength="50" />
+          <Property Name="idSopstvenik" Type="int" />
+        </EntityType>
+        <EntityType Name="sopstvenik">
+          <Key>
+            <PropertyRef Name="idSopstvenik" />
+          </Key>
+          <Property Name="idSopstvenik" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="prezime" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="telefon" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ulica" Type="nvarchar" MaxLength="50" />
+          <Property Name="grad" Type="nvarchar" MaxLength="50" />
+          <Property Name="linkSlika" Type="nvarchar" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="stan">
+          <Key>
+            <PropertyRef Name="idStan" />
+          </Key>
+          <Property Name="idStan" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="sprat" Type="int" Nullable="false" />
+          <Property Name="parno" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="parking" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="idObjekt" Type="int" />
+        </EntityType>
+        <EntityType Name="Tip_Korisnik">
+          <Key>
+            <PropertyRef Name="id_tip_korisnik" />
+          </Key>
+          <Property Name="id_tip_korisnik" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="tip" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tip_na_dogovor">
+          <Key>
+            <PropertyRef Name="idTip" />
+          </Key>
+          <Property Name="idTip" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Tip" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="vraboten">
+          <Key>
+            <PropertyRef Name="idVraboten" />
+          </Key>
+          <Property Name="idVraboten" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="prezime" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="telefon" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="pozicija" Type="nvarchar" MaxLength="50" />
+          <Property Name="procentPoDogovor" Type="int" />
+          <Property Name="dataVrabotuvanje" Type="date" />
+          <Property Name="plata" Type="int" Nullable="false" />
+          <Property Name="linkSlika" Type="nvarchar" MaxLength="50" />
+          <Property Name="ulica" Type="nvarchar" MaxLength="50" />
+          <Property Name="grad" Type="nvarchar" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__dogovor__idKlien__45F365D3">
+          <End Role="klient" Type="Store.klient" Multiplicity="1" />
+          <End Role="dogovor" Type="Store.dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klient">
+              <PropertyRef Name="idKlient" />
+            </Principal>
+            <Dependent Role="dogovor">
+              <PropertyRef Name="idKlient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dogovor__idObjek__52593CB8">
+          <End Role="objekt" Type="Store.objekt" Multiplicity="1" />
+          <End Role="dogovor" Type="Store.dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objekt">
+              <PropertyRef Name="idObjekt" />
+            </Principal>
+            <Dependent Role="dogovor">
+              <PropertyRef Name="idObjekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dogovor__idVrabo__5FB337D6">
+          <End Role="vraboten" Type="Store.vraboten" Multiplicity="1" />
+          <End Role="dogovor" Type="Store.dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vraboten">
+              <PropertyRef Name="idVraboten" />
+            </Principal>
+            <Dependent Role="dogovor">
+              <PropertyRef Name="idVraboten" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dogovorIz__idDog__3D5E1FD2">
+          <End Role="dogovor" Type="Store.dogovor" Multiplicity="1" />
+          <End Role="dogovorIznajmuvanje" Type="Store.dogovorIznajmuvanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dogovor">
+              <PropertyRef Name="idDogovor" />
+            </Principal>
+            <Dependent Role="dogovorIznajmuvanje">
+              <PropertyRef Name="idDogovor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dogovorPr__idDog__403A8C7D">
+          <End Role="dogovor" Type="Store.dogovor" Multiplicity="1" />
+          <End Role="dogovorProdavanje" Type="Store.dogovorProdavanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dogovor">
+              <PropertyRef Name="idDogovor" />
+            </Principal>
+            <Dependent Role="dogovorProdavanje">
+              <PropertyRef Name="idDogovor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kancelari__idObj__534D60F1">
+          <End Role="objekt" Type="Store.objekt" Multiplicity="0..1" />
+          <End Role="kancelarija" Type="Store.kancelarija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objekt">
+              <PropertyRef Name="idObjekt" />
+            </Principal>
+            <Dependent Role="kancelarija">
+              <PropertyRef Name="idObjekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kukja__idObjekt__5441852A">
+          <End Role="objekt" Type="Store.objekt" Multiplicity="1" />
+          <End Role="kukja" Type="Store.kukja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objekt">
+              <PropertyRef Name="idObjekt" />
+            </Principal>
+            <Dependent Role="kukja">
+              <PropertyRef Name="idObjekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__objekt__idSopstv__5812160E">
+          <End Role="sopstvenik" Type="Store.sopstvenik" Multiplicity="0..1" />
+          <End Role="objekt" Type="Store.objekt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sopstvenik">
+              <PropertyRef Name="idSopstvenik" />
+            </Principal>
+            <Dependent Role="objekt">
+              <PropertyRef Name="idSopstvenik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__stan__idObjekt__5AEE82B9">
+          <End Role="objekt" Type="Store.objekt" Multiplicity="0..1" />
+          <End Role="stan" Type="Store.stan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objekt">
+              <PropertyRef Name="idObjekt" />
+            </Principal>
+            <Dependent Role="stan">
+              <PropertyRef Name="idObjekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AgencijaZaNEdvizniniModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AgencijaZaNEdvizniniEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="dogovors" EntityType="AgencijaZaNEdvizniniModel.dogovor" />
+          <EntitySet Name="dogovorIznajmuvanjes" EntityType="AgencijaZaNEdvizniniModel.dogovorIznajmuvanje" />
+          <EntitySet Name="dogovorProdavanjes" EntityType="AgencijaZaNEdvizniniModel.dogovorProdavanje" />
+          <EntitySet Name="kancelarijas" EntityType="AgencijaZaNEdvizniniModel.kancelarija" />
+          <EntitySet Name="klients" EntityType="AgencijaZaNEdvizniniModel.klient" />
+          <EntitySet Name="kukjas" EntityType="AgencijaZaNEdvizniniModel.kukja" />
+          <EntitySet Name="objekts" EntityType="AgencijaZaNEdvizniniModel.objekt" />
+          <EntitySet Name="sopstveniks" EntityType="AgencijaZaNEdvizniniModel.sopstvenik" />
+          <EntitySet Name="stans" EntityType="AgencijaZaNEdvizniniModel.stan" />
+          <EntitySet Name="Tip_Korisnik" EntityType="AgencijaZaNEdvizniniModel.Tip_Korisnik" />
+          <EntitySet Name="tip_na_dogovor" EntityType="AgencijaZaNEdvizniniModel.tip_na_dogovor" />
+          <EntitySet Name="vrabotens" EntityType="AgencijaZaNEdvizniniModel.vraboten" />
+          <AssociationSet Name="FK__dogovor__idKlien__45F365D3" Association="AgencijaZaNEdvizniniModel.FK__dogovor__idKlien__45F365D3">
+            <End Role="klient" EntitySet="klients" />
+            <End Role="dogovor" EntitySet="dogovors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dogovor__idObjek__52593CB8" Association="AgencijaZaNEdvizniniModel.FK__dogovor__idObjek__52593CB8">
+            <End Role="objekt" EntitySet="objekts" />
+            <End Role="dogovor" EntitySet="dogovors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dogovor__idVrabo__5FB337D6" Association="AgencijaZaNEdvizniniModel.FK__dogovor__idVrabo__5FB337D6">
+            <End Role="vraboten" EntitySet="vrabotens" />
+            <End Role="dogovor" EntitySet="dogovors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dogovorIz__idDog__3D5E1FD2" Association="AgencijaZaNEdvizniniModel.FK__dogovorIz__idDog__3D5E1FD2">
+            <End Role="dogovor" EntitySet="dogovors" />
+            <End Role="dogovorIznajmuvanje" EntitySet="dogovorIznajmuvanjes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dogovorPr__idDog__403A8C7D" Association="AgencijaZaNEdvizniniModel.FK__dogovorPr__idDog__403A8C7D">
+            <End Role="dogovor" EntitySet="dogovors" />
+            <End Role="dogovorProdavanje" EntitySet="dogovorProdavanjes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kancelari__idObj__534D60F1" Association="AgencijaZaNEdvizniniModel.FK__kancelari__idObj__534D60F1">
+            <End Role="objekt" EntitySet="objekts" />
+            <End Role="kancelarija" EntitySet="kancelarijas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kukja__idObjekt__5441852A" Association="AgencijaZaNEdvizniniModel.FK__kukja__idObjekt__5441852A">
+            <End Role="objekt" EntitySet="objekts" />
+            <End Role="kukja" EntitySet="kukjas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__objekt__idSopstv__5812160E" Association="AgencijaZaNEdvizniniModel.FK__objekt__idSopstv__5812160E">
+            <End Role="sopstvenik" EntitySet="sopstveniks" />
+            <End Role="objekt" EntitySet="objekts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__stan__idObjekt__5AEE82B9" Association="AgencijaZaNEdvizniniModel.FK__stan__idObjekt__5AEE82B9">
+            <End Role="objekt" EntitySet="objekts" />
+            <End Role="stan" EntitySet="stans" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="dogovor">
+          <Key>
+            <PropertyRef Name="idDogovor" />
+          </Key>
+          <Property Type="Int32" Name="idDogovor" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idKlient" Nullable="false" />
+          <Property Type="Int32" Name="idVraboten" Nullable="false" />
+          <Property Type="Int32" Name="idObjekt" Nullable="false" />
+          <Property Type="String" Name="notar" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="klient" Relationship="AgencijaZaNEdvizniniModel.FK__dogovor__idKlien__45F365D3" FromRole="dogovor" ToRole="klient" />
+          <NavigationProperty Name="objekt" Relationship="AgencijaZaNEdvizniniModel.FK__dogovor__idObjek__52593CB8" FromRole="dogovor" ToRole="objekt" />
+          <NavigationProperty Name="vraboten" Relationship="AgencijaZaNEdvizniniModel.FK__dogovor__idVrabo__5FB337D6" FromRole="dogovor" ToRole="vraboten" />
+          <NavigationProperty Name="dogovorIznajmuvanjes" Relationship="AgencijaZaNEdvizniniModel.FK__dogovorIz__idDog__3D5E1FD2" FromRole="dogovor" ToRole="dogovorIznajmuvanje" />
+          <NavigationProperty Name="dogovorProdavanjes" Relationship="AgencijaZaNEdvizniniModel.FK__dogovorPr__idDog__403A8C7D" FromRole="dogovor" ToRole="dogovorProdavanje" />
+        </EntityType>
+        <EntityType Name="dogovorIznajmuvanje">
+          <Key>
+            <PropertyRef Name="idDogovorIznajmuvanje" />
+          </Key>
+          <Property Type="Int32" Name="idDogovorIznajmuvanje" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="dataOd" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="dataDo" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="idDogovor" Nullable="false" />
+          <NavigationProperty Name="dogovor" Relationship="AgencijaZaNEdvizniniModel.FK__dogovorIz__idDog__3D5E1FD2" FromRole="dogovorIznajmuvanje" ToRole="dogovor" />
+        </EntityType>
+        <EntityType Name="dogovorProdavanje">
+          <Key>
+            <PropertyRef Name="idDogovorProdavanje" />
+          </Key>
+          <Property Type="Int32" Name="idDogovorProdavanje" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="dataOd" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="idDogovor" Nullable="false" />
+          <NavigationProperty Name="dogovor" Relationship="AgencijaZaNEdvizniniModel.FK__dogovorPr__idDog__403A8C7D" FromRole="dogovorProdavanje" ToRole="dogovor" />
+        </EntityType>
+        <EntityType Name="kancelarija">
+          <Key>
+            <PropertyRef Name="idKancelarija" />
+          </Key>
+          <Property Type="Int32" Name="idKancelarija" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="internet" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="idObjekt" />
+          <NavigationProperty Name="objekt" Relationship="AgencijaZaNEdvizniniModel.FK__kancelari__idObj__534D60F1" FromRole="kancelarija" ToRole="objekt" />
+        </EntityType>
+        <EntityType Name="klient">
+          <Key>
+            <PropertyRef Name="idKlient" />
+          </Key>
+          <Property Type="Int32" Name="idKlient" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ime" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="prezime" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="telefon" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ulica" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="grad" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="link_slika" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="dogovors" Relationship="AgencijaZaNEdvizniniModel.FK__dogovor__idKlien__45F365D3" FromRole="klient" ToRole="dogovor" />
+        </EntityType>
+        <EntityType Name="kukja">
+          <Key>
+            <PropertyRef Name="idKukja" />
+          </Key>
+          <Property Type="Int32" Name="idKukja" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="KVADRATURADVOR" Nullable="false" />
+          <Property Type="Int32" Name="idObjekt" Nullable="false" />
+          <NavigationProperty Name="objekt" Relationship="AgencijaZaNEdvizniniModel.FK__kukja__idObjekt__5441852A" FromRole="kukja" ToRole="objekt" />
+        </EntityType>
+        <EntityType Name="objekt">
+          <Key>
+            <PropertyRef Name="idObjekt" />
+          </Key>
+          <Property Type="Int32" Name="idObjekt" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ulica" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="grad" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="sobi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="urlMapa" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="kvadratura" Nullable="false" />
+          <Property Type="String" Name="linkSliki" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="idSopstvenik" />
+          <NavigationProperty Name="dogovors" Relationship="AgencijaZaNEdvizniniModel.FK__dogovor__idObjek__52593CB8" FromRole="objekt" ToRole="dogovor" />
+          <NavigationProperty Name="kancelarijas" Relationship="AgencijaZaNEdvizniniModel.FK__kancelari__idObj__534D60F1" FromRole="objekt" ToRole="kancelarija" />
+          <NavigationProperty Name="kukjas" Relationship="AgencijaZaNEdvizniniModel.FK__kukja__idObjekt__5441852A" FromRole="objekt" ToRole="kukja" />
+          <NavigationProperty Name="sopstvenik" Relationship="AgencijaZaNEdvizniniModel.FK__objekt__idSopstv__5812160E" FromRole="objekt" ToRole="sopstvenik" />
+          <NavigationProperty Name="stans" Relationship="AgencijaZaNEdvizniniModel.FK__stan__idObjekt__5AEE82B9" FromRole="objekt" ToRole="stan" />
+        </EntityType>
+        <EntityType Name="sopstvenik">
+          <Key>
+            <PropertyRef Name="idSopstvenik" />
+          </Key>
+          <Property Type="Int32" Name="idSopstvenik" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ime" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="prezime" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="telefon" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ulica" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="grad" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="linkSlika" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="objekts" Relationship="AgencijaZaNEdvizniniModel.FK__objekt__idSopstv__5812160E" FromRole="sopstvenik" ToRole="objekt" />
+        </EntityType>
+        <EntityType Name="stan">
+          <Key>
+            <PropertyRef Name="idStan" />
+          </Key>
+          <Property Type="Int32" Name="idStan" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="sprat" Nullable="false" />
+          <Property Type="String" Name="parno" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="parking" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="idObjekt" />
+          <NavigationProperty Name="objekt" Relationship="AgencijaZaNEdvizniniModel.FK__stan__idObjekt__5AEE82B9" FromRole="stan" ToRole="objekt" />
+        </EntityType>
+        <EntityType Name="Tip_Korisnik">
+          <Key>
+            <PropertyRef Name="id_tip_korisnik" />
+          </Key>
+          <Property Type="Int32" Name="id_tip_korisnik" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="tip" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tip_na_dogovor">
+          <Key>
+            <PropertyRef Name="idTip" />
+          </Key>
+          <Property Type="Int32" Name="idTip" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Tip" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vraboten">
+          <Key>
+            <PropertyRef Name="idVraboten" />
+          </Key>
+          <Property Type="Int32" Name="idVraboten" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ime" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="prezime" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="telefon" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pozicija" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="procentPoDogovor" />
+          <Property Type="DateTime" Name="dataVrabotuvanje" Precision="0" />
+          <Property Type="Int32" Name="plata" Nullable="false" />
+          <Property Type="String" Name="linkSlika" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ulica" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="grad" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="dogovors" Relationship="AgencijaZaNEdvizniniModel.FK__dogovor__idVrabo__5FB337D6" FromRole="vraboten" ToRole="dogovor" />
+        </EntityType>
+        <Association Name="FK__dogovor__idKlien__45F365D3">
+          <End Type="AgencijaZaNEdvizniniModel.klient" Role="klient" Multiplicity="1" />
+          <End Type="AgencijaZaNEdvizniniModel.dogovor" Role="dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klient">
+              <PropertyRef Name="idKlient" />
+            </Principal>
+            <Dependent Role="dogovor">
+              <PropertyRef Name="idKlient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dogovor__idObjek__52593CB8">
+          <End Type="AgencijaZaNEdvizniniModel.objekt" Role="objekt" Multiplicity="1" />
+          <End Type="AgencijaZaNEdvizniniModel.dogovor" Role="dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objekt">
+              <PropertyRef Name="idObjekt" />
+            </Principal>
+            <Dependent Role="dogovor">
+              <PropertyRef Name="idObjekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dogovor__idVrabo__5FB337D6">
+          <End Type="AgencijaZaNEdvizniniModel.vraboten" Role="vraboten" Multiplicity="1" />
+          <End Type="AgencijaZaNEdvizniniModel.dogovor" Role="dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vraboten">
+              <PropertyRef Name="idVraboten" />
+            </Principal>
+            <Dependent Role="dogovor">
+              <PropertyRef Name="idVraboten" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dogovorIz__idDog__3D5E1FD2">
+          <End Type="AgencijaZaNEdvizniniModel.dogovor" Role="dogovor" Multiplicity="1" />
+          <End Type="AgencijaZaNEdvizniniModel.dogovorIznajmuvanje" Role="dogovorIznajmuvanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dogovor">
+              <PropertyRef Name="idDogovor" />
+            </Principal>
+            <Dependent Role="dogovorIznajmuvanje">
+              <PropertyRef Name="idDogovor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dogovorPr__idDog__403A8C7D">
+          <End Type="AgencijaZaNEdvizniniModel.dogovor" Role="dogovor" Multiplicity="1" />
+          <End Type="AgencijaZaNEdvizniniModel.dogovorProdavanje" Role="dogovorProdavanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dogovor">
+              <PropertyRef Name="idDogovor" />
+            </Principal>
+            <Dependent Role="dogovorProdavanje">
+              <PropertyRef Name="idDogovor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kancelari__idObj__534D60F1">
+          <End Type="AgencijaZaNEdvizniniModel.objekt" Role="objekt" Multiplicity="0..1" />
+          <End Type="AgencijaZaNEdvizniniModel.kancelarija" Role="kancelarija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objekt">
+              <PropertyRef Name="idObjekt" />
+            </Principal>
+            <Dependent Role="kancelarija">
+              <PropertyRef Name="idObjekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kukja__idObjekt__5441852A">
+          <End Type="AgencijaZaNEdvizniniModel.objekt" Role="objekt" Multiplicity="1" />
+          <End Type="AgencijaZaNEdvizniniModel.kukja" Role="kukja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objekt">
+              <PropertyRef Name="idObjekt" />
+            </Principal>
+            <Dependent Role="kukja">
+              <PropertyRef Name="idObjekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__objekt__idSopstv__5812160E">
+          <End Type="AgencijaZaNEdvizniniModel.sopstvenik" Role="sopstvenik" Multiplicity="0..1" />
+          <End Type="AgencijaZaNEdvizniniModel.objekt" Role="objekt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sopstvenik">
+              <PropertyRef Name="idSopstvenik" />
+            </Principal>
+            <Dependent Role="objekt">
+              <PropertyRef Name="idSopstvenik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__stan__idObjekt__5AEE82B9">
+          <End Type="AgencijaZaNEdvizniniModel.objekt" Role="objekt" Multiplicity="0..1" />
+          <End Type="AgencijaZaNEdvizniniModel.stan" Role="stan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objekt">
+              <PropertyRef Name="idObjekt" />
+            </Principal>
+            <Dependent Role="stan">
+              <PropertyRef Name="idObjekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StoreContainer" CdmEntityContainer="AgencijaZaNEdvizniniEntities" >
+          <EntitySetMapping Name="dogovors">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.dogovor">
+              <MappingFragment StoreEntitySet="dogovor">
+                <ScalarProperty Name="notar" ColumnName="notar" />
+                <ScalarProperty Name="idObjekt" ColumnName="idObjekt" />
+                <ScalarProperty Name="idVraboten" ColumnName="idVraboten" />
+                <ScalarProperty Name="idKlient" ColumnName="idKlient" />
+                <ScalarProperty Name="idDogovor" ColumnName="idDogovor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dogovorIznajmuvanjes">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.dogovorIznajmuvanje">
+              <MappingFragment StoreEntitySet="dogovorIznajmuvanje">
+                <ScalarProperty Name="idDogovor" ColumnName="idDogovor" />
+                <ScalarProperty Name="dataDo" ColumnName="dataDo" />
+                <ScalarProperty Name="dataOd" ColumnName="dataOd" />
+                <ScalarProperty Name="idDogovorIznajmuvanje" ColumnName="idDogovorIznajmuvanje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dogovorProdavanjes">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.dogovorProdavanje">
+              <MappingFragment StoreEntitySet="dogovorProdavanje">
+                <ScalarProperty Name="idDogovor" ColumnName="idDogovor" />
+                <ScalarProperty Name="dataOd" ColumnName="dataOd" />
+                <ScalarProperty Name="idDogovorProdavanje" ColumnName="idDogovorProdavanje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kancelarijas">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.kancelarija">
+              <MappingFragment StoreEntitySet="kancelarija">
+                <ScalarProperty Name="idObjekt" ColumnName="idObjekt" />
+                <ScalarProperty Name="internet" ColumnName="internet" />
+                <ScalarProperty Name="idKancelarija" ColumnName="idKancelarija" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="klients">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.klient">
+              <MappingFragment StoreEntitySet="klient">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="link_slika" ColumnName="link_slika" />
+                <ScalarProperty Name="grad" ColumnName="grad" />
+                <ScalarProperty Name="ulica" ColumnName="ulica" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="idKlient" ColumnName="idKlient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kukjas">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.kukja">
+              <MappingFragment StoreEntitySet="kukja">
+                <ScalarProperty Name="idObjekt" ColumnName="idObjekt" />
+                <ScalarProperty Name="KVADRATURADVOR" ColumnName="KVADRATURADVOR" />
+                <ScalarProperty Name="idKukja" ColumnName="idKukja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="objekts">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.objekt">
+              <MappingFragment StoreEntitySet="objekt">
+                <ScalarProperty Name="idSopstvenik" ColumnName="idSopstvenik" />
+                <ScalarProperty Name="linkSliki" ColumnName="linkSliki" />
+                <ScalarProperty Name="kvadratura" ColumnName="kvadratura" />
+                <ScalarProperty Name="urlMapa" ColumnName="urlMapa" />
+                <ScalarProperty Name="sobi" ColumnName="sobi" />
+                <ScalarProperty Name="grad" ColumnName="grad" />
+                <ScalarProperty Name="ulica" ColumnName="ulica" />
+                <ScalarProperty Name="idObjekt" ColumnName="idObjekt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sopstveniks">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.sopstvenik">
+              <MappingFragment StoreEntitySet="sopstvenik">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="linkSlika" ColumnName="linkSlika" />
+                <ScalarProperty Name="grad" ColumnName="grad" />
+                <ScalarProperty Name="ulica" ColumnName="ulica" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="idSopstvenik" ColumnName="idSopstvenik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stans">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.stan">
+              <MappingFragment StoreEntitySet="stan">
+                <ScalarProperty Name="idObjekt" ColumnName="idObjekt" />
+                <ScalarProperty Name="parking" ColumnName="parking" />
+                <ScalarProperty Name="parno" ColumnName="parno" />
+                <ScalarProperty Name="sprat" ColumnName="sprat" />
+                <ScalarProperty Name="idStan" ColumnName="idStan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tip_Korisnik">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.Tip_Korisnik">
+              <MappingFragment StoreEntitySet="Tip_Korisnik">
+                <ScalarProperty Name="tip" ColumnName="tip" />
+                <ScalarProperty Name="id_tip_korisnik" ColumnName="id_tip_korisnik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tip_na_dogovor">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.tip_na_dogovor">
+              <MappingFragment StoreEntitySet="tip_na_dogovor">
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="idTip" ColumnName="idTip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vrabotens">
+            <EntityTypeMapping TypeName="AgencijaZaNEdvizniniModel.vraboten">
+              <MappingFragment StoreEntitySet="vraboten">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="grad" ColumnName="grad" />
+                <ScalarProperty Name="ulica" ColumnName="ulica" />
+                <ScalarProperty Name="linkSlika" ColumnName="linkSlika" />
+                <ScalarProperty Name="plata" ColumnName="plata" />
+                <ScalarProperty Name="dataVrabotuvanje" ColumnName="dataVrabotuvanje" />
+                <ScalarProperty Name="procentPoDogovor" ColumnName="procentPoDogovor" />
+                <ScalarProperty Name="pozicija" ColumnName="pozicija" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="idVraboten" ColumnName="idVraboten" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
